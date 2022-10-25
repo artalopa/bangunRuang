@@ -141,11 +141,11 @@
           targetOutputV.style.display = "inline-block";
           targetOutputL.style.display = "inline-block";
           switch (true) {
-            case rKerucut == 0 || tKerucut == 0:
-              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
-              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
-              outputV = "V = Masukkan angka yang valid";
-              outputL = "L = Masukkan angka yang valid";
+            case rKerucut != 0 && tKerucut != 0 && sKerucut != 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
+              outputV = `Volume =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasilV}`;
+              outputL = `Luas =<br> (22 / 7) * ${rKerucut} * (${rKerucut} + ${sKerucut}) =<br>${hasilL}`;
               break;
             case rKerucut != 0 && tKerucut != 0 && sKerucut == 0:
               targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
@@ -153,11 +153,17 @@
               outputV = `Volume =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasilV}`;
               outputL = "L = Masukkan angka yang valid";
               break;
-            case rKerucut != 0 && tKerucut != 0 && sKerucut != 0:
-              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+            case rKerucut != 0 && tKerucut == 0 && sKerucut != 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
               targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
-              outputV = `Volume =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasilV}`;
+              outputV = "V = Masukkan angka yang valid";
               outputL = `Luas =<br> (22 / 7) * ${rKerucut} * (${rKerucut} + ${sKerucut}) =<br>${hasilL}`;
+              break;
+            case rKerucut == 0 || tKerucut == 0 || sKerucut == 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = "V = Masukkan angka yang valid";
+              outputL = "L = Masukkan angka yang valid";
               break;
           }
           targetOutputV.innerHTML = outputV;
