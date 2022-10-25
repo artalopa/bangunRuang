@@ -52,7 +52,6 @@
         text-align: center;
       }
       #main h3 {
-        font-size: 26px;
         margin-top: 50px;
       }
       #main img {
@@ -64,6 +63,7 @@
         color: white;
         line-height: 25px;
         padding: 15px;
+        margin: 0 5px 10px;
         border-radius: 5px;
       }
       input,
@@ -96,149 +96,229 @@
       <a onclick="mainBalok()" href="#">Balok</a>
     </nav>
     <div id="main">
-      <h1>Volume Bangun Ruang</h1>
+      <h1>V&L Bangun Ruang</h1>
       <br />
       <img src="img/main.jpeg" />
       <script>
         function mainKerucut() {
-          var judul = "<h3>Volume Kerucut</h3>";
-          var img = '<img src="img/Rumus-Volume-Kerucut.png" alt="" />';
+          var judul = "<h3>Volume & Luas Permukaan Kerucut</h3>";
+          var img = '<img src="img/Rumus-Kerucut.png" alt="" />';
           var br = "<br />";
           var inputR = '<input type="number" placeholder="r" id="rKerucut" />';
           var inputT = '<input type="number" placeholder="t" id="tKerucut" />';
+          var inputS = '<input type="number" placeholder="s" id="sKerucut" />';
           var button = '<button onclick="hitungKerucut()">Hitung</button>';
-          var p = '<p id="hasilKerucut"></p>';
+          var pV = '<p id="hasilVKerucut"></p>';
+          var pL = '<p id="hasilLKerucut"></p>';
 
-          document.getElementById("main").style.backgroundColor = "#99D9EA";
+          document.getElementById("main").style.backgroundColor = "#E4E4E4";
           document.getElementById("main").innerHTML =
-            judul + img + br + p + br + inputR + br + inputT + br + button;
+            judul +
+            img +
+            br +
+            pV +
+            pL +
+            br +
+            inputR +
+            br +
+            inputT +
+            br +
+            inputS +
+            br +
+            button;
         }
         function hitungKerucut() {
           var rKerucut = document.getElementById("rKerucut").value;
           var tKerucut = document.getElementById("tKerucut").value;
-          var targetOutput = document.getElementById("hasilKerucut");
-          var output = "";
-          // 1/3.pi.r^2.t
-          var hasil = (1 / 3) * (22 / 7) * rKerucut ** 2 * tKerucut;
+          var sKerucut = document.getElementById("sKerucut").value;
+          var targetOutputV = document.getElementById("hasilVKerucut");
+          var targetOutputL = document.getElementById("hasilLKerucut");
+          var outputV = "";
+          var outputL = "";
+          var hasilV = (1 / 3) * (22 / 7) * rKerucut ** 2 * tKerucut; // 1/3.pi.r^2.t
+          var hasilL = (22 / 7) * rKerucut * (rKerucut + sKerucut); // pi.r.(r+s)
 
-          targetOutput.style.display = "inline-block";
-          if (rKerucut == 0 || tKerucut == 0) {
-            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
-            output = "Masukkan angka yang valid";
-          } else {
-            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
-            output = `Volume kerucut =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasil}`;
+          targetOutputV.style.display = "inline-block";
+          targetOutputL.style.display = "inline-block";
+          switch (true) {
+            case rKerucut == 0 || tKerucut == 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = "V = Masukkan angka yang valid";
+              outputL = "L = Masukkan angka yang valid";
+              break;
+            case rKerucut != 0 && tKerucut != 0 && sKerucut == 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = `Volume =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasilV}`;
+              outputL = "L = Masukkan angka yang valid";
+              break;
+            case rKerucut != 0 && tKerucut != 0 && sKerucut != 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
+              outputV = `Volume =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasilV}`;
+              outputL = `Luas =<br> (22 / 7) * ${rKerucut} * (${rKerucut} + ${sKerucut}) =<br>${hasilL}`;
+              break;
           }
-          targetOutput.innerHTML = output;
+          targetOutputV.innerHTML = outputV;
+          targetOutputL.innerHTML = outputL;
         }
 
         function mainBola() {
-          var judul = "<h3>Volume Bola</h3>";
-          var img = '<img src="img/Rumus-Volume-Bola.png" alt="" />';
+          var judul = "<h3>Volume & Luas Permukaan Bola</h3>";
+          var img = '<img src="img/Rumus-Bola.png" alt="" />';
           var br = "<br />";
           var inputR = '<input type="number" placeholder="r" id="rBola" />';
           var button = '<button onclick="hitungBola()">Hitung</button>';
-          var p = '<p id="hasilBola"></p>';
+          var pV = '<p id="hasilVBola"></p>';
+          var pL = '<p id="hasilLBola"></p>';
 
-          document.getElementById("main").style.backgroundColor = "#FFD84F";
+          document.getElementById("main").style.backgroundColor = "#F3F3F3";
           document.getElementById("main").innerHTML =
-            judul + img + br + p + br + inputR + br + button;
+            judul + img + br + pV + pL + br + inputR + br + button;
         }
         function hitungBola() {
           var rBola = document.getElementById("rBola").value;
-          var targetOutput = document.getElementById("hasilBola");
-          var output = "";
-          // 4/4.pi.r^3
-          var hasil = (4 / 3) * (22 / 7) * rBola ** 3;
-          targetOutput.style.display = "inline-block";
-          if (rBola == 0) {
-            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
-            output = "Masukkan angka yang valid";
-          } else {
-            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
-            output = `Volume bola =<br>(4 / 3) * (22 / 7) * ${rBola} ** 3 =<br>${hasil}`;
+          var targetOutputV = document.getElementById("hasilVBola");
+          var targetOutputL = document.getElementById("hasilLBola");
+          var outputV = "";
+          var outputL = "";
+          var hasilV = (4 / 3) * (22 / 7) * rBola ** 3; // 4/4.pi.r^3
+          var hasilL = 4 * (22 / 7) * rBola ** 2; // 4.pi.r^2
+
+          targetOutputV.style.display = "inline-block";
+          targetOutputL.style.display = "inline-block";
+          switch (true) {
+            case rBola == 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = "Volume = Masukkan angka yang valid";
+              outputL = "Luas = Masukkan angka yang valid";
+              break;
+            case rBola != 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
+              outputV = `Volume  =<br>(4 / 3) * (22 / 7) * ${rBola} ** 3 =<br>${hasilV}`;
+              outputL = `Luas =<br>4 * (22 / 7) * ${rBola}**2 =<br>${hasilL}`;
+              break;
           }
-          targetOutput.innerHTML = output;
+          targetOutputV.innerHTML = outputV;
+          targetOutputL.innerHTML = outputL;
         }
 
         function mainTabung() {
-          var judul = "<h3>Volume Tabung</h3>";
-          var img = '<img src="img/Rumus-Volume-Tabung.png" alt=""/>';
+          var judul = "<h3>Volume & Luas Permukaan Tabung</h3>";
+          var img = '<img src="img/Rumus-Tabung.png" alt=""/>';
           var br = "<br />";
           var inputR = '<input type="number" placeholder="r" id="rTabung" />';
           var inputT = '<input type="number" placeholder="t" id="tTabung" />';
           var button = '<button onclick="hitungTabung()">Hitung</button>';
-          var p = '<p id="hasilTabung"></p>';
-
-          document.getElementById("main").style.backgroundColor = "#FFFFFF";
-          document.getElementById("main").innerHTML =
-            judul + img + br + p + br + inputR + br + inputT + br + button;
-        }
-        function hitungTabung() {
-          var rTabung = document.getElementById("rTabung").value;
-          var tTabung = document.getElementById("tTabung").value;
-          var targetOutput = document.getElementById("hasilTabung");
-          var output = "";
-          // pi.r^2.t
-          var hasil = (22 / 7) * rTabung ** 2 * tTabung;
-
-          targetOutput.style.display = "inline-block";
-          if (rTabung == 0 || tTabung == 0) {
-            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
-            output = "Masukkan angka yang valid";
-          } else {
-            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
-            output = `Volume tabung =<br>(22 / 7) * ${rTabung} ** 2 * ${tTabung} =<br>${hasil}`;
-          }
-          targetOutput.innerHTML = output;
-        }
-
-        function mainKubus() {
-          var judul = "<h3>Volume Kubus</h3>";
-          var img = '<img src="img/Rumus-Volume-Kubus.png" alt="" />';
-          var br = "<br />";
-          var inputS = '<input type="number" placeholder="s" id="sKubus" />';
-          var button = '<button onclick="hitungKubus()">Hitung</button>';
-          var p = '<p id="hasilKubus"></p>';
-
-          document.getElementById("main").style.backgroundColor = "#FBF759";
-          document.getElementById("main").innerHTML =
-            judul + img + br + p + br + inputS + br + button;
-        }
-        function hitungKubus() {
-          var sKubus = document.getElementById("sKubus").value;
-          var targetOutput = document.getElementById("hasilKubus");
-          var output = "";
-          // s^3
-          var hasil = sKubus ** 3;
-
-          targetOutput.style.display = "inline-block";
-          if (sKubus == 0) {
-            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
-            output = "Masukkan angka yang valid";
-          } else {
-            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
-            output = `Volume kubus =<br>${sKubus}**3 =<br>${hasil}`;
-          }
-          targetOutput.innerHTML = output;
-        }
-
-        function mainBalok() {
-          var judul = "<h3>Volume Balok</h3>";
-          var img = '<img src="img/Rumus-Volume-Balok.png" alt="" />';
-          var br = "<br />";
-          var inputP = '<input type="number" placeholder="p" id="pBalok" />';
-          var inputL = '<input type="number" placeholder="l" id="lBalok" />';
-          var inputT = '<input type="number" placeholder="t" id="tBalok" />';
-          var button = '<button onclick="hitungBalok()">Hitung</button>';
-          var p = '<p id="hasilBalok"></p>';
+          var pV = '<p id="hasilVTabung"></p>';
+          var pL = '<p id="hasilLTabung"></p>';
 
           document.getElementById("main").style.backgroundColor = "#C8BFE7";
           document.getElementById("main").innerHTML =
             judul +
             img +
             br +
-            p +
+            pV +
+            pL +
+            br +
+            inputR +
+            br +
+            inputT +
+            br +
+            button;
+        }
+        function hitungTabung() {
+          var rTabung = document.getElementById("rTabung").value;
+          var tTabung = document.getElementById("tTabung").value;
+          var targetOutputV = document.getElementById("hasilVTabung");
+          var targetOutputL = document.getElementById("hasilLTabung");
+          var outputV = "";
+          var outputL = "";
+          var hasilV = (22 / 7) * rTabung ** 2 * tTabung; // pi.r^2.t
+          var hasilL = 2 * (22 / 7) * rTabung * (rTabung + tTabung); //2.pi.r.(r+t)
+
+          targetOutputV.style.display = "inline-block";
+          targetOutputL.style.display = "inline-block";
+          switch (true) {
+            case rTabung == 0 || tTabung == 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = "Volume = Masukkan angka yang valid";
+              outputL = "Luas = Masukkan angka yang valid";
+              break;
+            case rTabung != 0 && tTabung != 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
+              outputV = `Volume =<br>(22 / 7) * ${rTabung} ** 2 * ${tTabung} =<br>${hasilV}`;
+              outputL = `Luas  =<br>2 * (22 / 7) * ${rTabung} * (${rTabung} + ${tTabung}) =<br>${hasilL}`;
+              break;
+          }
+          targetOutputV.innerHTML = outputV;
+          targetOutputL.innerHTML = outputL;
+        }
+
+        function mainKubus() {
+          var judul = "<h3>Volume & Luas Permukaan Kubus</h3>";
+          var img = '<img src="img/Rumus-Kubus.png" alt="" />';
+          var br = "<br />";
+          var inputS = '<input type="number" placeholder="s" id="sKubus" />';
+          var button = '<button onclick="hitungKubus()">Hitung</button>';
+          var pV = '<p id="hasilVKubus"></p>';
+          var pL = '<p id="hasilLKubus"></p>';
+
+          document.getElementById("main").style.backgroundColor = "#E5E5E5";
+          document.getElementById("main").innerHTML =
+            judul + img + br + pV + pL + br + inputS + br + button;
+        }
+        function hitungKubus() {
+          var sKubus = document.getElementById("sKubus").value;
+          var targetOutputV = document.getElementById("hasilVKubus");
+          var targetOutputL = document.getElementById("hasilLKubus");
+          var output = "";
+          var hasilV = sKubus ** 3; // s^3
+          var hasilL = 6 * sKubus ** 2; // 6.s^2
+
+          targetOutputV.style.display = "inline-block";
+          targetOutputL.style.display = "inline-block";
+          switch (true) {
+            case sKubus == 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = "V = Masukkan angka yang valid";
+              outputL = "L = Masukkan angka yang valid";
+              break;
+            case sKubus != 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
+              outputV = `Volume =<br>${sKubus}**3 =<br>${hasilV}`;
+              outputL = `Luas =<br>6*${sKubus}**2 =<br>${hasilL}`;
+              break;
+          }
+          targetOutputV.innerHTML = outputV;
+          targetOutputL.innerHTML = outputL;
+        }
+
+        function mainBalok() {
+          var judul = "<h3>Volume & Luas Permukaan Balok</h3>";
+          var img = '<img src="img/Rumus-Balok.png" alt="" />';
+          var br = "<br />";
+          var inputP = '<input type="number" placeholder="p" id="pBalok" />';
+          var inputL = '<input type="number" placeholder="l" id="lBalok" />';
+          var inputT = '<input type="number" placeholder="t" id="tBalok" />';
+          var button = '<button onclick="hitungBalok()">Hitung</button>';
+          var pV = '<p id="hasilVBalok"></p>';
+          var pL = '<p id="hasilLBalok"></p>';
+
+          document.getElementById("main").style.backgroundColor = "#EFE4B0";
+          document.getElementById("main").innerHTML =
+            judul +
+            img +
+            br +
+            pV +
+            pL +
             br +
             inputP +
             br +
@@ -252,20 +332,32 @@
           var pBalok = document.getElementById("pBalok").value;
           var lBalok = document.getElementById("lBalok").value;
           var tBalok = document.getElementById("tBalok").value;
-          var targetOutput = document.getElementById("hasilBalok");
-          var output = "";
-          // p.l.t
-          var hasil = pBalok * lBalok * tBalok;
+          var targetOutputV = document.getElementById("hasilVBalok");
+          var targetOutputL = document.getElementById("hasilLBalok");
+          var outputV = "";
+          var outputL = "";
+          var hasilV = pBalok * lBalok * tBalok; // p.l.t
+          var hasilL =
+            2 * (pBalok * lBalok + pBalok * tBalok + lBalok * tBalok); // 2*(pl+pt+lt)
 
-          targetOutput.style.display = "inline-block";
-          if (pBalok == 0 || lBalok == 0 || tBalok == 0) {
-            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
-            output = "Masukkan angka yang valid";
-          } else {
-            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
-            output = `Volume balok =<br>${pBalok}*${lBalok}*${tBalok} =<br>${hasil}`;
+          targetOutputV.style.display = "inline-block";
+          targetOutputL.style.display = "inline-block";
+          switch (true) {
+            case pBalok == 0 || lBalok == 0 || tBalok == 0:
+              targetOutputV.style.backgroundColor = "rgb(178, 42, 42)";
+              targetOutputL.style.backgroundColor = "rgb(178, 42, 42)";
+              outputV = "Volume = Masukkan angka yang valid";
+              outputL = "Luas = Masukkan angka yang valid";
+              break;
+            case pBalok != 0 && lBalok != 0 && tBalok != 0:
+              targetOutputV.style.backgroundColor = "rgb(42, 178, 42)";
+              targetOutputL.style.backgroundColor = "rgb(42, 178, 42)";
+              outputV = `Volume =<br>${pBalok}*${lBalok}*${tBalok} =<br>${hasilV}`;
+              outputL = `Luas =<br>2 * ((${pBalok} * ${lBalok}) + (${pBalok} * ${tBalok}) + (${lBalok} * ${tBalok}))) =<br>${hasilL}`;
+              break;
           }
-          targetOutput.innerHTML = output;
+          targetOutputV.innerHTML = outputV;
+          targetOutputL.innerHTML = outputL;
         }
       </script>
     </div>
