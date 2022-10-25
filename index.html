@@ -71,161 +71,159 @@
   <body>
     <nav>
       <a href=".">VBR</a>
-      <a href="#kerucut">Kerucut</a>
-      <a href="#bola">Bola</a>
-      <a href="#tabung">Tabung</a>
-      <a href="#kubus">Kubus</a>
-      <a href="#balok">Balok</a>
+      <a onclick="mainKerucut()" href="#">Kerucut</a>
+      <a onclick="mainBola()" href="#">Bola</a>
+      <a onclick="mainTabung()" href="#">Tabung</a>
+      <a onclick="mainKubus()" href="#">Kubus</a>
+      <a onclick="mainBalok()" href="#">Balok</a>
     </nav>
     <div id="main">
+      <h1>Volume Bangun Ruang</h1>
       <script>
-        var url = window.location.hash;
-        switch (true) {
-          case url == "":
-            document.write("<h1>Volume Bangun Ruang</h1>");
-            break;
-          case url == "#kerucut":
-            var judul = "<h3>Volume Kerucut</h3>";
-            var img = '<img src="img/Rumus-Volume-Kerucut.png" alt="" />';
-            var br = "<br />";
-            var inputR = '<input type="text" placeholder="r" id="rKerucut" />';
-            var inputT = '<input type="text" placeholder="t" id="tKerucut" />';
-            var button = '<button onclick="hitungKerucut()">Hitung</button>';
-            var p = '<p id="hasilKerucut"></p>';
+        function mainKerucut() {
+          var judul = "<h3>Volume Kerucut</h3>";
+          var img = '<img src="img/Rumus-Volume-Kerucut.png" alt="" />';
+          var br = "<br />";
+          var inputR = '<input type="text" placeholder="r" id="rKerucut" />';
+          var inputT = '<input type="text" placeholder="t" id="tKerucut" />';
+          var button = '<button onclick="hitungKerucut()">Hitung</button>';
+          var p = '<p id="hasilKerucut"></p>';
 
-            document.getElementById("main").style.backgroundColor = "#99D9EA";
-            document.write(
-              judul,
-              img,
-              br,
-              p,
-              br,
-              inputR,
-              br,
-              inputT,
-              br,
-              button
-            );
-            function hitungKerucut() {
-              var rKerucut = parseInt(
-                document.getElementById("rKerucut").value
-              );
-              var tKerucut = parseInt(
-                document.getElementById("tKerucut").value
-              );
-              // 1/3.pi.r^2.t
-              var hasil = (1 / 3) * (22 / 7) * rKerucut ** 2 * tKerucut;
-              document.getElementById(
-                "hasilKerucut"
-              ).innerHTML = `Volume kerucut = (1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} = ${hasil}`;
-            }
-            break;
-          case url == "#bola":
-            var judul = "<h3>Volume Bola</h3>";
-            var img = '<img src="img/Rumus-Volume-Bola.png" alt="" />';
-            var br = "<br />";
-            var inputR = '<input type="text" placeholder="r" id="rBola" />';
-            var button = '<button onclick="hitungBola()">Hitung</button>';
-            var p = '<p id="hasilBola"></p>';
-
-            document.getElementById("main").style.backgroundColor = "#FFD84F";
-            document.write(judul, img, br, p, br, inputR, br, button);
-            function hitungBola() {
-              var rBola = parseInt(document.getElementById("rBola").value);
-              // 4/4.pi.r^3
-              var hasil = (4 / 3) * (22 / 7) * rBola ** 3;
-              document.getElementById(
-                "hasilBola"
-              ).innerHTML = `Volume bola = (4 / 3) * (22 / 7) * ${rBola} ** 3 = ${hasil}`;
-            }
-            break;
-          case url == "#tabung":
-            var judul = "<h3>Volume Tabung</h3>";
-            var img = '<img src="img/Rumus-Volume-Tabung.png" alt=""/>';
-            var br = "<br />";
-            var inputR = '<input type="text" placeholder="r" id="rTabung" />';
-            var inputT = '<input type="text" placeholder="t" id="tTabung" />';
-            var button = '<button onclick="hitungTabung()">Hitung</button>';
-            var p = '<p id="hasilTabung"></p>';
-
-            document.getElementById("main").style.backgroundColor = "#FFFFFF";
-            document.write(
-              judul,
-              img,
-              br,
-              p,
-              br,
-              inputR,
-              br,
-              inputT,
-              br,
-              button
-            );
-            function hitungTabung() {
-              var rTabung = parseInt(document.getElementById("rTabung").value);
-              var tTabung = parseInt(document.getElementById("tTabung").value);
-              // pi.r^2.t
-              var hasil = (22 / 7) * rTabung ** 2 * tTabung;
-              document.getElementById(
-                "hasilTabung"
-              ).innerHTML = `Volume tabung = (22 / 7) * ${rTabung} ** 2 * ${tTabung} = ${hasil}`;
-            }
-            break;
-          case url == "#kubus":
-            var judul = "<h3>Volume Kubus</h3>";
-            var img = '<img src="img/Rumus-Volume-Kubus.png" alt="" />';
-            var br = "<br />";
-            var inputS = '<input type="text" placeholder="s" id="sKubus" />';
-            var button = '<button onclick="hitungKubus()">Hitung</button>';
-            var p = '<p id="hasilKubus"></p>';
-
-            document.getElementById("main").style.backgroundColor = "#FBF759";
-            document.write(judul, img, br, p, br, inputS, br, button);
-            function hitungKubus() {
-              var sKubus = parseInt(document.getElementById("sKubus").value);
-              // s^3
-              var hasil = sKubus ** 3;
-              document.getElementById(
-                "hasilKubus"
-              ).innerHTML = `Volume kubus = ${sKubus}**3 = ${hasil}`;
-            }
-            break;
-          case url == "#balok":
-            var judul = "<h3>Volume Balok</h3>";
-            var img = '<img src="img/Rumus-Volume-Balok.png" alt="" />';
-            var br = "<br />";
-            var inputP = '<input type="text" placeholder="p" id="pBalok" />';
-            var inputL = '<input type="text" placeholder="l" id="lBalok" />';
-            var inputT = '<input type="text" placeholder="t" id="tBalok" />';
-            var button = '<button onclick="hitungBalok()">Hitung</button>';
-            var p = '<p id="hasilBalok"></p>';
-
-            document.getElementById("main").style.backgroundColor = "#C8BFE7";
-            document.write(
-              judul,
-              img,
-              br,
-              p,
-              inputP,
-              br,
-              inputL,
-              br,
-              inputT,
-              br,
-              button
-            );
-            function hitungBalok() {
-              var pBalok = parseInt(document.getElementById("pBalok").value);
-              var lBalok = parseInt(document.getElementById("lBalok").value);
-              var tBalok = parseInt(document.getElementById("tBalok").value);
-              // p.l.t
-              var hasil = pBalok * lBalok * tBalok;
-              document.getElementById(
-                "hasilBalok"
-              ).innerHTML = `Volume balok = ${pBalok}*${lBalok}*${tBalok} = ${hasil}`;
-            }
-            break;
+          document.getElementById("main").style.backgroundColor = "#99D9EA";
+          document.getElementById("main").innerHTML =
+            judul + img + br + p + br + inputR + br + inputT + br + button;
+          function hitungKerucut() {
+            var rKerucut = parseInt(document.getElementById("rKerucut").value);
+            var tKerucut = parseInt(document.getElementById("tKerucut").value);
+            // 1/3.pi.r^2.t
+            var hasil = (1 / 3) * (22 / 7) * rKerucut ** 2 * tKerucut;
+            document.getElementById(
+              "hasilKerucut"
+            ).innerHTML = `Volume kerucut = (1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} = ${hasil}`;
+          }
         }
+
+        function mainBola() {
+          var judul = "<h3>Volume Bola</h3>";
+          var img = '<img src="img/Rumus-Volume-Bola.png" alt="" />';
+          var br = "<br />";
+          var inputR = '<input type="text" placeholder="r" id="rBola" />';
+          var button = '<button onclick="hitungBola()">Hitung</button>';
+          var p = '<p id="hasilBola"></p>';
+
+          document.getElementById("main").style.backgroundColor = "#FFD84F";
+          document.getElementById("main").innerHTML =
+            judul + img + br + p + br + inputR + br + button;
+          function hitungBola() {
+            var rBola = parseInt(document.getElementById("rBola").value);
+            // 4/4.pi.r^3
+            var hasil = (4 / 3) * (22 / 7) * rBola ** 3;
+            document.getElementById(
+              "hasilBola"
+            ).innerHTML = `Volume bola = (4 / 3) * (22 / 7) * ${rBola} ** 3 = ${hasil}`;
+          }
+        }
+
+        function mainTabung() {
+          var judul = "<h3>Volume Tabung</h3>";
+          var img = '<img src="img/Rumus-Volume-Tabung.png" alt=""/>';
+          var br = "<br />";
+          var inputR = '<input type="text" placeholder="r" id="rTabung" />';
+          var inputT = '<input type="text" placeholder="t" id="tTabung" />';
+          var button = '<button onclick="hitungTabung()">Hitung</button>';
+          var p = '<p id="hasilTabung"></p>';
+
+          document.getElementById("main").style.backgroundColor = "#FFFFFF";
+          document.getElementById("main").innerHTML =
+            judul + img + br + p + br + inputR + br + inputT + br + button;
+          function hitungTabung() {
+            var rTabung = parseInt(document.getElementById("rTabung").value);
+            var tTabung = parseInt(document.getElementById("tTabung").value);
+            // pi.r^2.t
+            var hasil = (22 / 7) * rTabung ** 2 * tTabung;
+            document.getElementById(
+              "hasilTabung"
+            ).innerHTML = `Volume tabung = (22 / 7) * ${rTabung} ** 2 * ${tTabung} = ${hasil}`;
+          }
+        }
+
+        function mainKubus() {
+          var judul = "<h3>Volume Kubus</h3>";
+          var img = '<img src="img/Rumus-Volume-Kubus.png" alt="" />';
+          var br = "<br />";
+          var inputS = '<input type="text" placeholder="s" id="sKubus" />';
+          var button = '<button onclick="hitungKubus()">Hitung</button>';
+          var p = '<p id="hasilKubus"></p>';
+
+          document.getElementById("main").style.backgroundColor = "#FBF759";
+          document.getElementById("main").innerHTML =
+            judul + img + br + p + br + inputS + br + button;
+          function hitungKubus() {
+            var sKubus = parseInt(document.getElementById("sKubus").value);
+            // s^3
+            var hasil = sKubus ** 3;
+            document.getElementById(
+              "hasilKubus"
+            ).innerHTML = `Volume kubus = ${sKubus}**3 = ${hasil}`;
+          }
+        }
+
+        function mainBalok() {
+          var judul = "<h3>Volume Balok</h3>";
+          var img = '<img src="img/Rumus-Volume-Balok.png" alt="" />';
+          var br = "<br />";
+          var inputP = '<input type="text" placeholder="p" id="pBalok" />';
+          var inputL = '<input type="text" placeholder="l" id="lBalok" />';
+          var inputT = '<input type="text" placeholder="t" id="tBalok" />';
+          var button = '<button onclick="hitungBalok()">Hitung</button>';
+          var p = '<p id="hasilBalok"></p>';
+
+          document.getElementById("main").style.backgroundColor = "#C8BFE7";
+          document.getElementById("main").innerHTML =
+            judul +
+            img +
+            br +
+            p +
+            inputP +
+            br +
+            inputL +
+            br +
+            inputT +
+            br +
+            button;
+          function hitungBalok() {
+            var pBalok = parseInt(document.getElementById("pBalok").value);
+            var lBalok = parseInt(document.getElementById("lBalok").value);
+            var tBalok = parseInt(document.getElementById("tBalok").value);
+            // p.l.t
+            var hasil = pBalok * lBalok * tBalok;
+            document.getElementById(
+              "hasilBalok"
+            ).innerHTML = `Volume balok = ${pBalok}*${lBalok}*${tBalok} = ${hasil}`;
+          }
+        }
+
+        // var url = window.location.hash;
+        // switch (true) {
+        //   case url == "":
+        //     // halaman awal
+        //     break;
+        //   case url == "#kerucut":
+        //     // kode kerucut
+        //     break;
+        //   case url == "#bola":
+        //     // kode bola
+        //     break;
+        //   case url == "#tabung":
+        //     // kode tabung
+        //     break;
+        //   case url == "#kubus":
+        //     //kode kubus
+        //     break;
+        //   case url == "#balok":
+        //     // kode balok
+        //     break;
+        // }
       </script>
     </div>
   </body>
