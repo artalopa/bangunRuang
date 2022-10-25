@@ -60,7 +60,6 @@
         width: 400px;
       }
       #main p {
-        background-color: rgb(42, 178, 42);
         display: none;
         color: white;
         line-height: 25px;
@@ -117,13 +116,20 @@
         function hitungKerucut() {
           var rKerucut = document.getElementById("rKerucut").value;
           var tKerucut = document.getElementById("tKerucut").value;
+          var targetOutput = document.getElementById("hasilKerucut");
+          var output = "";
           // 1/3.pi.r^2.t
           var hasil = (1 / 3) * (22 / 7) * rKerucut ** 2 * tKerucut;
-          document.getElementById(
-            "hasilKerucut"
-          ).innerHTML = `Volume kerucut =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasil}`;
-          document.getElementById("hasilKerucut").style.display =
-            "inline-block";
+
+          targetOutput.style.display = "inline-block";
+          if (rKerucut == 0 || tKerucut == 0) {
+            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
+            output = "Masukkan angka yang valid";
+          } else {
+            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
+            output = `Volume kerucut =<br>(1 / 3) * (22 / 7) * (${rKerucut} ** 2) * ${tKerucut} =<br>${hasil}`;
+          }
+          targetOutput.innerHTML = output;
         }
 
         function mainBola() {
@@ -140,12 +146,19 @@
         }
         function hitungBola() {
           var rBola = document.getElementById("rBola").value;
+          var targetOutput = document.getElementById("hasilBola");
+          var output = "";
           // 4/4.pi.r^3
           var hasil = (4 / 3) * (22 / 7) * rBola ** 3;
-          document.getElementById(
-            "hasilBola"
-          ).innerHTML = `Volume bola =<br>(4 / 3) * (22 / 7) * ${rBola} ** 3 =<br>${hasil}`;
-          document.getElementById("hasilBola").style.display = "inline-block";
+          targetOutput.style.display = "inline-block";
+          if (rBola == 0) {
+            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
+            output = "Masukkan angka yang valid";
+          } else {
+            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
+            output = `Volume bola =<br>(4 / 3) * (22 / 7) * ${rBola} ** 3 =<br>${hasil}`;
+          }
+          targetOutput.innerHTML = output;
         }
 
         function mainTabung() {
@@ -164,12 +177,20 @@
         function hitungTabung() {
           var rTabung = document.getElementById("rTabung").value;
           var tTabung = document.getElementById("tTabung").value;
+          var targetOutput = document.getElementById("hasilTabung");
+          var output = "";
           // pi.r^2.t
           var hasil = (22 / 7) * rTabung ** 2 * tTabung;
-          document.getElementById(
-            "hasilTabung"
-          ).innerHTML = `Volume tabung =<br>(22 / 7) * ${rTabung} ** 2 * ${tTabung} =<br>${hasil}`;
-          document.getElementById("hasilTabung").style.display = "inline-block";
+
+          targetOutput.style.display = "inline-block";
+          if (rTabung == 0 || tTabung == 0) {
+            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
+            output = "Masukkan angka yang valid";
+          } else {
+            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
+            output = `Volume tabung =<br>(22 / 7) * ${rTabung} ** 2 * ${tTabung} =<br>${hasil}`;
+          }
+          targetOutput.innerHTML = output;
         }
 
         function mainKubus() {
@@ -186,12 +207,20 @@
         }
         function hitungKubus() {
           var sKubus = document.getElementById("sKubus").value;
+          var targetOutput = document.getElementById("hasilKubus");
+          var output = "";
           // s^3
           var hasil = sKubus ** 3;
-          document.getElementById(
-            "hasilKubus"
-          ).innerHTML = `Volume kubus =<br>${sKubus}**3 =<br>${hasil}`;
-          document.getElementById("hasilKubus").style.display = "inline-block";
+
+          targetOutput.style.display = "inline-block";
+          if (sKubus == 0) {
+            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
+            output = "Masukkan angka yang valid";
+          } else {
+            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
+            output = `Volume kubus =<br>${sKubus}**3 =<br>${hasil}`;
+          }
+          targetOutput.innerHTML = output;
         }
 
         function mainBalok() {
@@ -223,12 +252,20 @@
           var pBalok = document.getElementById("pBalok").value;
           var lBalok = document.getElementById("lBalok").value;
           var tBalok = document.getElementById("tBalok").value;
+          var targetOutput = document.getElementById("hasilBalok");
+          var output = "";
           // p.l.t
           var hasil = pBalok * lBalok * tBalok;
-          document.getElementById(
-            "hasilBalok"
-          ).innerHTML = `Volume balok =<br>${pBalok}*${lBalok}*${tBalok} =<br>${hasil}`;
-          document.getElementById("hasilBalok").style.display = "inline-block";
+
+          targetOutput.style.display = "inline-block";
+          if (pBalok == 0 || lBalok == 0 || tBalok == 0) {
+            targetOutput.style.backgroundColor = "rgb(178, 42, 42)";
+            output = "Masukkan angka yang valid";
+          } else {
+            targetOutput.style.backgroundColor = "rgb(42, 178, 42)";
+            output = `Volume balok =<br>${pBalok}*${lBalok}*${tBalok} =<br>${hasil}`;
+          }
+          targetOutput.innerHTML = output;
         }
 
         // var url = window.location.hash;
