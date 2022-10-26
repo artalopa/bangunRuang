@@ -36,13 +36,16 @@
         display: inline-block;
         border-radius: 50%;
       }
+      nav a:first-of-type:hover {
+        box-shadow: none;
+      }
       nav a:first-of-type img {
         width: 100px;
         height: 100px;
         border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.25);
       }
       nav a:hover {
-        /* background-color: lightgray; */
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       }
       #main {
@@ -128,9 +131,9 @@
             button;
         }
         function hitungKerucut() {
-          var rKerucut = document.getElementById("rKerucut").value;
-          var tKerucut = document.getElementById("tKerucut").value;
-          var sKerucut = document.getElementById("sKerucut").value;
+          var rKerucut = parseInt(document.getElementById("rKerucut").value);
+          var tKerucut = parseInt(document.getElementById("tKerucut").value);
+          var sKerucut = parseInt(document.getElementById("sKerucut").value);
           var targetOutputV = document.getElementById("hasilVKerucut");
           var targetOutputL = document.getElementById("hasilLKerucut");
           var outputV = "";
@@ -184,7 +187,7 @@
             judul + img + br + pV + pL + br + inputR + br + button;
         }
         function hitungBola() {
-          var rBola = document.getElementById("rBola").value;
+          var rBola = parseInt(document.getElementById("rBola").value);
           var targetOutputV = document.getElementById("hasilVBola");
           var targetOutputL = document.getElementById("hasilLBola");
           var outputV = "";
@@ -234,11 +237,12 @@
             br +
             inputT +
             br +
-            button;
+            document.getElementById("rTabung").value;
+          var tTabung = button;
         }
         function hitungTabung() {
-          var rTabung = document.getElementById("rTabung").value;
-          var tTabung = document.getElementById("tTabung").value;
+          var rTabung = parseInt(document.getElementById("rTabung").value);
+          var tTabung = parseInt(document.getElementById("tTabung").value);
           var targetOutputV = document.getElementById("hasilVTabung");
           var targetOutputL = document.getElementById("hasilLTabung");
           var outputV = "";
@@ -280,7 +284,7 @@
             judul + img + br + pV + pL + br + inputS + br + button;
         }
         function hitungKubus() {
-          var sKubus = document.getElementById("sKubus").value;
+          var sKubus = parseInt(document.getElementById("sKubus").value);
           var targetOutputV = document.getElementById("hasilVKubus");
           var targetOutputL = document.getElementById("hasilLKubus");
           var output = "";
@@ -335,9 +339,9 @@
             button;
         }
         function hitungBalok() {
-          var pBalok = document.getElementById("pBalok").value;
-          var lBalok = document.getElementById("lBalok").value;
-          var tBalok = document.getElementById("tBalok").value;
+          var pBalok = parseInt(document.getElementById("pBalok").value);
+          var lBalok = parseInt(document.getElementById("lBalok").value);
+          var tBalok = parseInt(document.getElementById("tBalok").value);
           var targetOutputV = document.getElementById("hasilVBalok");
           var targetOutputL = document.getElementById("hasilLBalok");
           var outputV = "";
