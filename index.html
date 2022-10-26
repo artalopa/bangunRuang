@@ -19,11 +19,12 @@
         /* padding-top: 10px; */
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
         z-index: 1;
+        overflow: scroll;
       }
       nav a {
         display: block;
         color: black;
-        padding: 20px 0;
+        padding: 10px 0;
         margin: 5px;
         text-decoration: none;
         transition: 0.2s;
@@ -45,6 +46,9 @@
         border-radius: 50%;
         border: 1px solid rgba(0, 0, 0, 0.25);
       }
+      nav a img {
+        width: 50px;
+      }
       nav a:hover {
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       }
@@ -53,6 +57,7 @@
         width: 80vw;
         padding: 0 10px;
         text-align: center;
+        overflow: scroll;
       }
       #main h3 {
         margin-top: 50px;
@@ -82,6 +87,9 @@
         nav a {
           font-size: 14px;
         }
+        nav a img {
+          width: 50%;
+        }
         nav a:first-of-type img {
           width: 80%;
           height: 80%;
@@ -92,11 +100,13 @@
   <body>
     <nav>
       <a href="."><img src="img/main.jpeg" alt="" /></a>
-      <a onclick="mainKerucut()" href="#">Kerucut</a>
-      <a onclick="mainBola()" href="#">Bola</a>
-      <a onclick="mainTabung()" href="#">Tabung</a>
-      <a onclick="mainKubus()" href="#">Kubus</a>
-      <a onclick="mainBalok()" href="#">Balok</a>
+      <a onclick="mainKerucut()" href="#"
+        ><img src="img/Kerucut.png" alt=""
+      /></a>
+      <a onclick="mainBola()" href="#"><img src="img/Bola.png" alt="" /></a>
+      <a onclick="mainTabung()" href="#"><img src="img/Tabung.png" alt="" /></a>
+      <a onclick="mainKubus()" href="#"><img src="img/Kubus.png" alt="" /></a>
+      <a onclick="mainBalok()" href="#"><img src="img/Balok.png" alt="" /></a>
     </nav>
     <div id="main">
       <h1>V&L Bangun Ruang</h1>
@@ -237,8 +247,7 @@
             br +
             inputT +
             br +
-            document.getElementById("rTabung").value;
-          var tTabung = button;
+            button;
         }
         function hitungTabung() {
           var rTabung = parseInt(document.getElementById("rTabung").value);
